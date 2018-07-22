@@ -1,20 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class pacman : MonoBehaviour {
     // ---------- PUBLIC INSPECTOR INTERFACE -----------------
     public float Speed = 200.0f;
+    public Text scoreText;
 
     // ---------- PRIVATE SCRIPTING INTERFACE -----------------
     private Vector3 _currentDirection;
     private Vector3 _nextDirection;
-
-    void Start()
-    {
-
-    }
-
+    private int totalScore = 0;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -33,10 +30,12 @@ public class pacman : MonoBehaviour {
         }
         else if (horizontal > 0)
         {
+            // Going Right:
             _nextDirection = Vector3.right;
         }
         else if (horizontal < 0)
         {
+            // Going Left:
             _nextDirection = Vector3.left;
         }
 
@@ -44,10 +43,16 @@ public class pacman : MonoBehaviour {
         transform.Translate(_nextDirection * Time.deltaTime * Speed);
     }
 
-    private Vector3 GetDirection()
+    //Scoring not working now!!!
+    public void Score(int currentScore)
     {
-        
-        // Now, check if we can continue on this direction:
-        return _currentDirection;
+        int score = currentScore;
+        totalScore = +score;
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        scoreText.text = "Score : " + totalScore.ToString();
     }
 }
