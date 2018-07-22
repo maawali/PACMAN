@@ -7,12 +7,13 @@ public class Collectable : MonoBehaviour
 
     public int CollectableValue = 1;
 
+    public GameManager gameManager;
+
     private void OnTriggerEnter(Collider other)
     {
-        pacman player = new pacman();
         if(other.gameObject.tag == "Player")
         {
-            player.Score(CollectableValue);
+            gameManager.AddScore(CollectableValue);
             Destroy(gameObject);
         }
     }

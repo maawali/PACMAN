@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class pacman : MonoBehaviour {
     // ---------- PUBLIC INSPECTOR INTERFACE -----------------
     public float Speed = 200.0f;
-    public Text scoreText;
 
     // ---------- PRIVATE SCRIPTING INTERFACE -----------------
     private Vector3 _currentDirection;
@@ -41,18 +39,5 @@ public class pacman : MonoBehaviour {
 
         // Move the character:
         transform.Translate(_nextDirection * Time.deltaTime * Speed);
-    }
-
-    //Scoring not working now!!!
-    public void Score(int currentScore)
-    {
-        int score = currentScore;
-        totalScore = +score;
-        UpdateScore();
-    }
-
-    void UpdateScore()
-    {
-        scoreText.text = "Score : " + totalScore.ToString();
     }
 }
